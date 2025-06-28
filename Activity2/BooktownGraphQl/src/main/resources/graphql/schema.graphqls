@@ -14,6 +14,9 @@ type Query {
 
   # NEW: Fetch books by author ID
   booksByAuthorId(authorId: ID): [Book]
+
+  # NEW: Add this line
+  authorsByLastName(lastName: String): [Author]
 }
 
 # Represents a book in the system.
@@ -83,4 +86,19 @@ type Mutation {
 
   # Add a new book to the system.
   addBook(input: AddBookInput): AddBookPayload
+
+  # NEW: Add this line
+  updateAuthorFirstName(
+    input: UpdateAuthorFirstNameInput
+  ): UpdateAuthorFirstNamePayload
+}
+# Input for updating author's first name
+input UpdateAuthorFirstNameInput {
+  id: Int
+  firstName: String
+}
+
+# Payload for updating author's first name
+type UpdateAuthorFirstNamePayload {
+  oldFirstName: String
 }

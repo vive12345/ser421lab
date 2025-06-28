@@ -1,13 +1,12 @@
 package com.example.graphqlserver.model;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Author {
 
     private int id;
-    private final String firstName;
+    private String firstName;
 
     private List<Book> books = new ArrayList<>();
 
@@ -18,7 +17,7 @@ public class Author {
         this.books = books;
     }
 
-    private final String lastName;
+    private String lastName;
 
     public int getId() {
         return id;
@@ -44,5 +43,11 @@ public class Author {
         this.books = books;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

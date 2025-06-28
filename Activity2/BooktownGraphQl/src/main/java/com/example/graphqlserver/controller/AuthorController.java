@@ -9,7 +9,8 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
-
+import com.example.graphqlserver.dto.input.UpdateAuthorFirstNameInput;
+import com.example.graphqlserver.dto.output.UpdateAuthorFirstNamePayload;
 import java.util.List;
 
 @Controller
@@ -28,7 +29,12 @@ public class AuthorController {
     }
 
     @QueryMapping
-    public  Author authorById(@Argument("id") int id) {
+    public List<Author> authorsByLastName(@Argument("lastName") String lastName) {
+        return authorRepository.getAuthorsByLastName(lastName);
+    }
+
+    @QueryMapping
+    public Author authorById(@Argument("id") int id) {
         return authorRepository.getAuthorById(id);
     }
 
@@ -37,5 +43,11 @@ public class AuthorController {
         var author = authorRepository.save(input.firstName(), input.lastName());
         var out = new AddAuthorPayload(author);
         return out;
+    }
+
+    @MutationMapping
+    public UpdateAuthorFirstNamePayload updateAuthorFirstName(@Argument UpdateAuthorFirstNameInput input) {
+        String oldFirstName = authorRepository.updateAuthorFirstName(input.id(), input.firstName());
+        return new UpdateAuthorFirstNamePayload(oldFirstName);
     }
 }

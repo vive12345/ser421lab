@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 @Repository
 public class AuthorRepository {
     private static ArrayList<Author> dummyAuthors = new ArrayList<>();
@@ -34,11 +33,32 @@ public class AuthorRepository {
         return null;
     }
 
+    public List<Author> getAuthorsByLastName(String lastName) {
+        List<Author> result = new ArrayList<>();
+        for (Author author : dummyAuthors) {
+            if (author.getLastName().equalsIgnoreCase(lastName)) {
+                result.add(author);
+            }
+        }
+        return result;
+    }
+
     public Author save(String firstName, String lastName) {
         List<Book> book = new ArrayList<>();
         int nextId = dummyAuthors.isEmpty() ? 0 : dummyAuthors.get(dummyAuthors.size() - 1).getId() + 1;
         Author newAuthor = new Author(nextId, firstName, lastName, book);
         dummyAuthors.add(newAuthor);
         return newAuthor;
+    }
+
+    public String updateAuthorFirstName(int id, String newFirstName) {
+        for (Author author : dummyAuthors) {
+            if (author.getId() == id) {
+                String oldFirstName = author.getFirstName();
+                author.setFirstName(newFirstName);
+                return oldFirstName;
+            }
+        }
+        return null; // Author not found
     }
 }
