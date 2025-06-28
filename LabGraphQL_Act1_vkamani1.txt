@@ -1,0 +1,37 @@
+query Query1 {
+  company {
+    name
+    founded
+    coo
+    cto
+    employees
+  }
+}
+
+query Query2 {
+  launchesPast(limit: 2) {
+    launch_date_local
+    links {
+      article_link
+    }
+    rocket {
+      rocket_name
+      rocket_type
+    }
+  }
+}
+
+query Query3 {
+  roadster {
+    details
+    launch_date_utc
+  }
+  rockets {
+    name
+    boosters
+    company
+    landing_legs {
+      material
+    }
+  }
+}
