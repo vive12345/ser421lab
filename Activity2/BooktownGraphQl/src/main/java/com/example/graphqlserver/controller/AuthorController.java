@@ -38,6 +38,11 @@ public class AuthorController {
         return authorRepository.getAuthorById(id);
     }
 
+    @QueryMapping
+    public List<String> bookTitlesByAuthorFirstName(@Argument("firstName") String firstName) {
+        return authorRepository.getBookTitlesByAuthorFirstName(firstName);
+    }
+
     @MutationMapping
     public AddAuthorPayload addAuthor(@Argument AddAuthorInput input) {
         var author = authorRepository.save(input.firstName(), input.lastName());

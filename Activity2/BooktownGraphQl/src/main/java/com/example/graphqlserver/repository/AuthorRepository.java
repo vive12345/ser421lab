@@ -61,4 +61,16 @@ public class AuthorRepository {
         }
         return null; // Author not found
     }
+
+    public List<String> getBookTitlesByAuthorFirstName(String firstName) {
+        List<String> bookTitles = new ArrayList<>();
+        for (Author author : dummyAuthors) {
+            if (author.getFirstName().equalsIgnoreCase(firstName)) {
+                for (Book book : author.getBooks()) {
+                    bookTitles.add(book.getTitle());
+                }
+            }
+        }
+        return bookTitles;
+    }
 }

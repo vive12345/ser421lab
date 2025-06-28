@@ -17,6 +17,9 @@ type Query {
 
   # NEW: Add this line
   authorsByLastName(lastName: String): [Author]
+
+  # NEW: Add this line
+  bookTitlesByAuthorFirstName(firstName: String): [String]
 }
 
 # Represents a book in the system.
