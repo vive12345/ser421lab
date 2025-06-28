@@ -8,6 +8,6 @@
 
 T1 ![alt text](image-3.png)
 T2 ![alt text](image-4.png)
-T3 ![alt text](image-5.png)
+T3 ![alt text](image-5.png)![alt text](image-6.png)
 T4
 T5

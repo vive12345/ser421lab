@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 @Repository
 public class BookRepository {
 
@@ -17,8 +16,7 @@ public class BookRepository {
         dummyBooks.addAll(Arrays.asList(
                 new Book("123456789", "The Road Not Taken", 0),
                 new Book("987654321", "To Kill a Mockingbird", 1),
-                new Book("456789123", "The Great Gatsby", 2)
-        ));
+                new Book("456789123", "The Great Gatsby", 2)));
     }
 
     public List<Book> getBooks() {
@@ -48,6 +46,16 @@ public class BookRepository {
             }
         }
         return bookList;
+    }
+
+    public String deleteBookByISBN(String isbn) {
+        for (int i = 0; i < dummyBooks.size(); i++) {
+            if (dummyBooks.get(i).getIsbn().equals(isbn)) {
+                dummyBooks.remove(i);
+                return isbn;
+            }
+        }
+        return null; // Book not found
     }
 
 }

@@ -91,6 +91,9 @@ type Mutation {
   updateAuthorFirstName(
     input: UpdateAuthorFirstNameInput
   ): UpdateAuthorFirstNamePayload
+
+  # NEW: Add this line
+  deleteBook(input: DeleteBookInput): DeleteBookPayload
 }
 # Input for updating author's first name
 input UpdateAuthorFirstNameInput {
@@ -101,4 +104,13 @@ input UpdateAuthorFirstNameInput {
 # Payload for updating author's first name
 type UpdateAuthorFirstNamePayload {
   oldFirstName: String
+}
+# Input for deleting a book
+input DeleteBookInput {
+  isbn: String
+}
+
+# Payload for deleting a book
+type DeleteBookPayload {
+  isbn: String
 }

@@ -11,6 +11,8 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+import com.example.graphqlserver.dto.input.DeleteBookInput;
+import com.example.graphqlserver.dto.output.DeleteBookPayload;
 
 import java.util.List;
 
@@ -51,6 +53,12 @@ public class BookController {
         author.getBooks().add(book);
         var out = new AddBookPayload(book);
         return out;
+    }
+
+    @MutationMapping
+    public DeleteBookPayload deleteBook(@Argument DeleteBookInput input) {
+        String deletedISBN = bookRepository.deleteBookByISBN(input.isbn());
+        return new DeleteBookPayload(deletedISBN);
     }
 
 }
